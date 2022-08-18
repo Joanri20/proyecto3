@@ -9,3 +9,93 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Enum_Type {
+  Laptop
+  Mouse
+  Keyboard
+  Monitor
+  Heaphone
+  Charger
+  CellPhone
+}
+
+enum Enum_Role {
+  Employee
+  Admin
+}
+
+enum Enum_Status {
+  New
+  Accepted
+  Rejected
+}
+
+model Provider {
+  id          String   @id @default(cuid())
+  name        String
+  nit         String   @unique
+  phoneNumber String
+  email       String   @unique
+  Device      Device[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Device {
+  id          String    @id @default(cuid())
+  deviceType  Enum_Type
+  name        String
+  description String
+  brand       String
+  providerId  String
+  provider    Provider  @relation(fields: [providerId], references: [id])
+  amount      Int
+  invoice     String
+  Request     Request[]
+  User        User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id          String    @id @default(cuid())
+  name        String
+  lastName    String
+  dni         String    @unique
+  phoneNumber String
+  Request     Request[]
+  companyId   String
+  company     Company   @relation(fields: [companyId], references: [id])
+  devices     Device[]
+  role        Enum_Role
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Company {
+  id   String @id @default(cuid())
+  name String
+  nit  String @unique
+  User User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Request {
+  id       String      @id @default(cuid())
+  deviceId String
+  device   Device      @relation(fields: [deviceId], references: [id])
+  reasons  String
+  status   Enum_Status
+  comment  String
+  userId   String
+  user     User        @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

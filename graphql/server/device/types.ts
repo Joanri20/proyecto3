@@ -1,23 +1,28 @@
 import { gql } from 'apollo-server-micro';
 
-const providerTypes = gql`
+const deviceTypes = gql`
     type Provider {
         id: ID!
+        deviceType: Enun_Type!
         name: String!
-        nit: String!
-        phoneNumber: String!
-        email: String!
-        device: Device[]!
+        description: String!
+        brand: String!
+        providerId: String!
+        provider: Provider!
+        amount: Int!
+        invoice: String!
+        Request: Request[]!
+        user: User!
         createdAt: DateTime!
         updatedAt: DateTime!
   }
 
   type Query {
-    mockModelGetter: [Provider]
+    mockModelGetter: [Device]
   }
   type Mutation {
     mockModelSetter(name: String!,nit: String!, phoneNumber: String!, email: String!, device: Device[]!): Provider
   }
 `;
 
-export { providerTypes };
+export { deviceTypes };

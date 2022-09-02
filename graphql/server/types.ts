@@ -5,7 +5,7 @@ import { deviceTypes } from '@graphql/server/device/types';
 
 const CommonTypes = gql`
   scalar Date
-`;
+`; 
 
 const globalTypes: DocumentNode[] = [CommonTypes, providerTypes, deviceTypes];
 

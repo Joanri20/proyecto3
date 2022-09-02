@@ -3,6 +3,19 @@ import { Id } from 'react-toastify';
 import { Resolver } from 'types';
 
 const model1Resolvers: Resolver = {
+  Provider: {
+    devices: async (parent, args) => {
+      const devices = await prisma.device.findMany({
+        where: {
+          providerId: {
+            equals: parent.id,
+          },
+        },
+      });
+      return devices;
+    },
+  },
+
   Query: {
     getProviders: async (parent, args) => {
       const provider = await prisma.provider.findMany();
@@ -16,6 +29,7 @@ const model1Resolvers: Resolver = {
       return provider;
     },
   },
+
   Mutation: {
     updateProvider: async (parent, args) => {
       const provider = await prisma.provider.update({
@@ -31,6 +45,12 @@ const model1Resolvers: Resolver = {
     },
 
     deleteProvider: async (parent, args) => {
+      /*await prisma.device.deleteMany({
+        where:{
+          providerId: args.id,
+        }
+      });*/
+      //Metodo opcional, por si no se puede borrado en cascada
       const provider = await prisma.provider.delete({
         where: { id: args.id },
       });

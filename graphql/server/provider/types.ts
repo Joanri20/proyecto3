@@ -7,6 +7,7 @@ const providerTypes = gql`
         nit: String!
         phoneNumber: String!
         email: String!
+        devices: [Device]
       }
 
       input providerInput{

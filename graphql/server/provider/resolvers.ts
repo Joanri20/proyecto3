@@ -72,3 +72,4 @@ const model1Resolvers: Resolver = {
 };
 
 export { model1Resolvers };
+

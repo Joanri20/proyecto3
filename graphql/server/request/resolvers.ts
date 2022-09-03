@@ -7,7 +7,7 @@ const requestResolvers: Resolver = {
       const device = await prisma.device.findFirst({
         where: {
           id: {
-            equals: parent.id,
+            equals: parent.deviceId,
           },
         },
       });
@@ -17,7 +17,7 @@ const requestResolvers: Resolver = {
       const user = await prisma.user.findFirst({
         where: {
           id: {
-            equals: parent.id,
+            equals: parent.userId,
           },
         },
       });

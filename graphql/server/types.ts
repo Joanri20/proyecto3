@@ -3,6 +3,7 @@ import { providerTypes } from '@graphql/server/provider/types';
 import { deviceTypes } from '@graphql/server/device/types';
 import { userTypes } from '@graphql/server/user/types';
 import { companyTypes } from '@graphql/server/company/types';
+import { requestTypes } from '@graphql/server/request/types';
 import { DocumentNode } from 'graphql';
 
 const CommonTypes = gql`
@@ -15,6 +16,7 @@ const globalTypes: DocumentNode[] = [
   deviceTypes,
   userTypes,
   companyTypes,
+  requestTypes,
 ];
 
 export { globalTypes };

@@ -10,10 +10,16 @@ const requestTypes = gql`
     user: User!
   }
 
+  enum Enum_Status {
+    New
+    Accepted
+    Rejected
+  }
+
   input requestInput {
     deviceId: String
     reasons: String
-    status: String
+    status: Enum_Status
     comment: String
     userId: String
   }

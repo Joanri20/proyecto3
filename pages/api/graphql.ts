@@ -14,6 +14,9 @@ const Server = async (req: NextApiRequest, res: NextApiResponse) => {
   const apolloServer = new ApolloServer({
     cache: 'bounded',
     context: () => {},
+    formatError: (err) => {
+      return ({ message: err.message,path: err.path, code: err.extensions.exception?.code })
+    },
     typeDefs: [...globalTypes],
     resolvers: [...globalResolvers],
     introspection: true,

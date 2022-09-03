@@ -7,17 +7,25 @@ const providerTypes = gql`
         nit: String!
         phoneNumber: String!
         email: String!
-        device: Device[]!
-        createdAt: DateTime!
-        updatedAt: DateTime!
-  }
+        devices: [Device]
+      }
+
+      input providerInput{
+        name: String
+        nit: String
+        phoneNumber: String
+        email: String
+      }
 
   type Query {
-    mockModelGetter: [Provider]
+    getProviders: [Provider]
+    getProviderById(id:ID!):Provider
   }
   type Mutation {
-    mockModelSetter(name: String!,nit: String!, phoneNumber: String!, email: String!, device: Device[]!): Provider
-  }
+    updateProvider(id:ID,data:providerInput):Provider
+    deleteProvider(id:ID):Provider
+    createProvider(data:providerInput):Provider
+    }
 `;
 
 export { providerTypes };

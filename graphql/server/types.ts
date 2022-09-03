@@ -1,23 +1,11 @@
 import { gql } from 'apollo-server-micro';
+import { providerTypes } from '@graphql/server/provider/types';
+import { deviceTypes } from '@graphql/server/device/types';
 
-const providerTypes = gql`
-    type Provider {
-        id: ID!
-        name: String!
-        nit: String!
-        phoneNumber: String!
-        email: String!
-        device: Device[]!
-        createdAt: DateTime!
-        updatedAt: DateTime!
-  }
+const CommonTypes = gql`
+  scalar Date
+`; 
 
-  type Query {
-    mockModelGetter: [Provider]
-  }
-  type Mutation {
-    mockModelSetter(name: String!,nit: String!, phoneNumber: String!, email: String!, device: Device[]!): Provider
-  }
-`;
+const globalTypes: DocumentNode[] = [CommonTypes, providerTypes, deviceTypes];
 
 export { providerTypes };

@@ -1,27 +1,46 @@
 import { gql } from 'apollo-server-micro';
 
 const deviceTypes = gql`
-    type Provider {
-        id: ID!
-        deviceType: Enun_Type!
-        name: String!
-        description: String!
-        brand: String!
-        providerId: String!
-        provider: Provider!
-        amount: Int!
-        invoice: String!
-        Request: Request[]!
-        user: User!
-        createdAt: DateTime!
-        updatedAt: DateTime!
+  type Device {
+    id: ID
+    name: String
+    description: String
+    brand: String
+    amount: Int
+    invoice: String
+    provider: Provider
+    deviceType: String
+  }
+
+  enum Enum_Type {
+    Laptop
+    Mouse
+    Keyboard
+    Monitor
+    Heaphone
+    Charger
+    CellPhone
+  }
+
+  input deviceInput {
+    name: String
+    description: String
+    brand: String
+    amount: Int
+    invoice: String
+    providerId: String
+    deviceType: Enum_Type
   }
 
   type Query {
-    mockModelGetter: [Device]
+    getDevices: [Device]
+    getDevice(id: ID): Device
   }
+
   type Mutation {
-    mockModelSetter(name: String!,nit: String!, phoneNumber: String!, email: String!, device: Device[]!): Provider
+    createDevice(data: deviceInput): Device
+    updateDevice(id: ID, data: deviceInput): Device
+    deleteDevice(id: ID): Device
   }
 `;
 

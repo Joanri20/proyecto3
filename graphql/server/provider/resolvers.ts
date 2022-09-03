@@ -1,8 +1,7 @@
 import { prisma } from '@config/prisma';
-import { Id } from 'react-toastify';
 import { Resolver } from 'types';
 
-const model1Resolvers: Resolver = {
+const providerResolvers: Resolver = {
   Provider: {
     devices: async (parent, args) => {
       const devices = await prisma.device.findMany({
@@ -71,5 +70,4 @@ const model1Resolvers: Resolver = {
   },
 };
 
-export { model1Resolvers };
-
+export { providerResolvers };

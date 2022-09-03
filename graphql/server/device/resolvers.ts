@@ -13,6 +13,20 @@ const deviceResolvers: Resolver = {
       });
       return provider;
     },
+    users: async (parent, args) => {
+      const users = await prisma.user.findMany({
+        where: {
+          devices: {
+            some: {
+              id: {
+                equals: parent.id,
+              },
+            },
+          },
+        },
+      });
+      return users;
+    },
   },
   Query: {
     getDevices: async (parent, args) => {
@@ -33,12 +47,12 @@ const deviceResolvers: Resolver = {
         where: { id: args.id },
         data: {
           name: { set: args.data.name },
-          description: {set: args.data.description },
-          brand: {set: args.data.brand },
-          amount: {set: args.data.amount },
-          invoice: {set: args.data.invoice },
-          providerId: {set: args.data.providerId},
-          deviceType: {set: args.data.deviceType},
+          description: { set: args.data.description },
+          brand: { set: args.data.brand },
+          amount: { set: args.data.amount },
+          invoice: { set: args.data.invoice },
+          providerId: { set: args.data.providerId },
+          deviceType: { set: args.data.deviceType },
         },
       });
       return device;

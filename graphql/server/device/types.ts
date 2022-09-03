@@ -10,6 +10,7 @@ const deviceTypes = gql`
     invoice: String
     provider: Provider
     deviceType: String
+    users: [User!]
   }
 
   enum Enum_Type {

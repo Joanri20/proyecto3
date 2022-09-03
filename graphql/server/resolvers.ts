@@ -1,7 +1,12 @@
 import { Resolver } from 'types';
-import { model1Resolvers } from '@graphql/server/provider/resolvers';
+import { providerResolvers } from '@graphql/server/provider/resolvers';
 import { deviceResolvers } from '@graphql/server/device/resolvers';
+import { userResolvers } from '@graphql/server/user/resolvers';
 
-const globalResolvers: Resolver[] = [model1Resolvers, deviceResolvers];
+const globalResolvers: Resolver[] = [
+  providerResolvers,
+  deviceResolvers,
+  userResolvers,
+];
 
 export { globalResolvers };

@@ -53,8 +53,8 @@ model Device {
   provider    Provider  @relation(fields: [providerId], references: [id])
   amount      Int
   invoice     String
-  Request     Request[]
-  User        User[]
+  requests     Request[]
+  users        User[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

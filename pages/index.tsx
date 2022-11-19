@@ -1,13 +1,10 @@
-import MyComponent from '@components/MyComponent';
+import Inicio from '@components/Inicio';
 import { NextPage } from 'next/types';
 
 const Home: NextPage = () => (
-  <>
-    <div className='text-indigo-500'>
-      NextJS Boilerplate with Tailwind and GraphQL
-    </div>
-    <MyComponent />
-  </>
+  <div className='bg-gray-100 h-screen'>
+    <Inicio />
+  </div>
 );
 
 export default Home;

@@ -11,7 +11,7 @@ const MyApp = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
   return (
     <>
       <Head>
-        <title>Page Name</title>
+        <title>START</title>
         <meta name='description' content='content' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
